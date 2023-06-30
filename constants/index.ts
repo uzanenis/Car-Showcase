@@ -37,6 +37,7 @@ export const manufacturers = [
   "Rolls-Royce",
   "Subaru",
   "Tesla",
+  "Togg",
   "Toyota",
   "Volkswagen",
   "Volvo",
