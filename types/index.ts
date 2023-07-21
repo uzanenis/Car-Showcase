@@ -12,6 +12,12 @@ export interface ICustomButtonProps {
 
 export interface ICustomeFilterProps {
   title: string;
+  options: OptionProps[];
+}
+
+export interface OptionProps {
+  title: string;
+  value: string;
 }
 
 export interface ISearchManufacturerProps {
@@ -32,4 +38,17 @@ export interface ICarProps {
   model: string;
   transmission: string;
   year: number;
+}
+
+export interface FilterProps {
+  manufacturer?: string;
+  model?: string;
+  year?: number;
+  fuel?: string;
+  limit: number;
+}
+
+export interface ShowMoreProps {
+  pageNumber: number;
+  isNext: boolean;
 }

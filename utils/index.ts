@@ -1,12 +1,14 @@
-import { ICarProps } from "@/types";
+import { FilterProps, ICarProps } from "@/types";
 
-export async function fetchCars() {
+export async function fetchCars(filters: FilterProps) {
+  const { manufacturer, model, year, fuel, limit } = filters;
+
   const headers = {
-    "X-RapidAPI-Key": "a635442b4bmshaf55ab53d7cb261p1bf924jsn6a792242632d",
+    "X-RapidAPI-Key": process.env.RAPID_API_KEY as string,
     "X-RapidAPI-Host": "cars-by-api-ninjas.p.rapidapi.com",
   };
 
-  const url = "https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=q3";
+  const url = `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&year=${year}&model=${model}&fuel_type=${fuel}&limit=${limit}`;
 
   const response = await fetch(url, {
     headers: headers,
@@ -18,6 +20,16 @@ export async function fetchCars() {
 }
 
 export const generateCarImageUrl = (car: ICarProps, angle?: string) => {};
+
+export const updateSearchParams = (type: string, value: string) => {
+  const searchParams = new URLSearchParams(window.location.search);
+
+  searchParams.set(type, value);
+
+  const newPath = `${window.location.pathname}?${searchParams.toString()}`;
+
+  return newPath;
+};
 
 export const calculateCarRent = (city_mpg: number, year: number) => {
   const basePricePerDay = 50; // Base rental price per day in dollars
